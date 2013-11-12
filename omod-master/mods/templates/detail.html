@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>运营组件库</title>
+<link rel="stylesheet" href="http://style.aliunicorn.com/5v/wholesale/buyer/base/reset|5v/wholesale/buyer/base/grids|5v/wholesale/activities/common/common|v_3240878290059_0.css" />
+<link  type="text/css" href="http://styleshit.me/tools/codefactory/wp-content/themes/codefactory/font/savedbyzero/savedbyzero.css" rel="stylesheet"  />
+<style type="text/css">
+.page-section {}
+	/* Loading Page */
+			.loading {}
+	/* Module List Page */
+			.page-of-mod-list {}
+	.page-of-mod-list .sec-mod-list {display:block;}
+	/* Single Module Page */
+			.page-of-single-mod {}
+	.page-of-single-mod .sec-single-mod {display:block;}
+
+body {font-family:arial; color:#333; font-size:14px; background: #eee;}
+	.zero {font-family:'SavedByZeroRegular', arial, sans-serif;}
+	.top-bar {background:#6b6b6b; height:22px; border-bottom: 1px solid #444;}
+	.top-bar .logo {padding-left:10px; line-height:22px; color:#fff; font-size:16px;}
+	.top-bar .logo .zh-name {font-size:13px;}
+	.bottom-bar {}
+	.butt {cursor:pointer; background-image: -webkit-linear-gradient(#F0F0F0, #F0F0F0 38%, #E0E0E0); border:1px solid rgba(0, 0, 0, 0.3); box-shadow: 0 1px 0 rgba(0, 0, 0, 0.12), inset 0 1px 2px rgba(255, 255, 255, 0.95); color:#444; border-radius:5px;}
+	.butt:hover {background:#eee;}
+	.sec-main {border-top:1px solid #fff;}
+	h3.sec-title {margin:20px; font-size:18px; font-weight:normal; border-bottom:1px solid #fff; text-shadow:0 0 1px #ccc; font-family: '微软雅黑';}
+	h3.sec-title span {display:block; padding:10px; border-bottom:1px solid #ccc;}
+	.navigation {height:30px; padding-top:10px; background:#6b6b6b }
+	.navigation li {float:left; cursor:pointer; height:30px; line-height:30px; padding:0 15px; color:#fff; font-weight:700 }
+	.navigation a:link, .navigation a:visited {color:#fff;}
+/* Module List Page */
+.page-of-mod-list {}
+	.page-of-mod-list .sec-mod-list {display:block;}
+	/*.sec-mod-list  {padding:0;}
+	.sec-mod-list .mod-list-item {margin-bottom:30px; background:#fff; box-shadow:0 0 8px rgba(80,80,80,0.8);}
+	.sec-mod-list   .mod-item-info {border-bottom:1px dashed #ccc; padding:20px; font-size:12px;}
+	.sec-mod-list     .view-detail {float:right;}
+	.sec-mod-list   .mod-preview-box {padding:30px;}*/
+	.awt-list {padding-left:30px}
+	.awt-list li.mod-item {float:left;position:relative;z-index:0;padding:10px 15px;width:482px;height:300px;}
+	.awt-list li.mod-item .awt-img {width:480px;height:298px;border:1px solid #ccc;box-shadow:0 0 3px #DDD;background-color:#fff;overflow:hidden;}
+	.awt-list li.mod-item .awt-img a {display:table-cell;width:480px;height:298px;vertical-align:middle;text-align:center;}
+	.awt-list li.mod-item .awt-img img {max-width:480px;max-height:300px;vertical-align:middle}
+	.awt-list li.mod-item .mod-text {visibility:hidden;position:absolute;left:16px;bottom:11px;width:480px;height:35px;line-height:35px;text-align:center;background:rgba(0,0,0,0.35);overflow:hidden;}
+	.awt-list li.mod-item .mod-text strong {color:#FFF;font-size:12px;text-shadow:0 0 1px #555;;}
+	.awt-list li.mod-item:hover .mod-text {visibility:visible;}
+	.awt-list li.mod-item .inp-checkbox {position:absolute;top:11px;right:16px;padding:5px 10px;border-radius:0 0 0 5px;font-size:12px;background:rgba(0,0,0,0.2);}
+	.awt-list li.mod-item .inp-checkbox input {float:left;margin-right:5px;}
+
+/* Single Module Page */
+.page-of-single-mod { }
+    .page-of-single-mod .mod-list-item {padding-bottom:50px;}
+	.page-of-single-mod   .mod-item-info {padding:0 20px 20px 20px; font-size:12px;}
+	.page-of-single-mod   .mod-item-info label,
+	.page-of-single-mod   .mod-item-info span {float:left; padding:4px 0;}
+	.page-of-single-mod   .mod-item-info label {clear:both;}
+	.page-of-single-mod   .mod-item-info span {padding-left:10px;}
+	.page-of-single-mod     .code-box {clear:both; display:block; padding:3px 10px; margin:5px 0; width:90%; color:#666; background:#fff; border: 1px solid #aaa; resize: none; overflow:hidden; font-family: Consolas, Arial; font-size:12px;}
+	.page-of-single-mod     .code-box:focus {outline:0;}
+	.page-of-single-mod     .link-code  {resize: none; overflow:hidden;}
+	.page-of-single-mod     .block-code {height:100px; overflow:auto;}
+	.page-of-single-mod   .mod-preview-box {background:#fff; padding:30px; box-shadow:0 0 5px #000 inset;}
+</style>
+</head>
+<body class="page-of-single-mod">
+	<script src="http://style.aliunicorn.com/we/lib/a|v_22f7069eeb41_ea92f9a091a9.js"></script>
+	<div class="top-bar zero"><a href="http://styleshit.me/demo/o-mod/show.html" class="logo">O - Modules - ( <span class="zh-name">运营组件库</span> ) </a> </div>
+	<div class="navigation" id="navigation">
+	        <ul>
+	            <li valueUrl=""><a href="/omod/">全部</a></li>
+				{% if  models.mod_type_list %}
+					{% for m in models.mod_type_list %}
+					<li><a href="/omod/type/{{m.id}}">{{m.name}}</a></li>
+					{% endfor %}
+				{% endif %}
+	        </ul>
+	</div>
+	<div class="sec-single-mod page-section" id="page-of-sigle-mod">
+			<h3 class="sec-title"><span>组件详情</span></h3>
+				<div class="mod-list-item">
+					<div class="mod-item-info clearfix">
+						<label>描述:</label><span>{{models.mod.name}}</span>
+						
+						<label>类型:</label>
+						<span><a href="">{{models.mod_type.name}}</a></span>
+						
+						
+						<label>CSS文件引用代码:</label>
+<textarea readonly="readonly" class="code-box link-code" rows="4">{% for m in models.mod_css_require %}{% if  m.url %}
+<link rel="stylesheet" href="{{m.url}}" />
+{% endif %} {% endfor %}
+</textarea>
+						
+						<label>JS文件引用代码:</label>
+<textarea readonly="readonly" class="code-box link-code" rows="4">{% for m in models.mod_js_require %}{% if m.url %}
+<script src="{{m.url}}"></script>
+{% endif %}	{% endfor %}
+</textarea>
+						
+						<label>HTML Template:</label>
+						<textarea readonly="readonly" class="code-box block-code" id="j-template-content-box">{{models.mod.html_tpl_str}}
+						</textarea>
+						<label>示例JSON数据：</label>     
+						<textarea readonly="readonly" class="code-box block-code" id="j-jsondata-content-box">{{models.mod.demo_json_str}}
+						</textarea>
+						
+						<label>组件预览：</label>
+					</div>
+						<!--reset.css-->
+						<link rel="stylesheet" href="http://style.aliunicorn.com/5v/wholesale/buyer/base/reset%7C5v/wholesale/buyer/base/grids%7C5v/wholesale/activities/common/common%7Cv_3240878290059_0.css">
+						<!-- Module Style START -->
+						{% for m in models.mod_css_require %}
+						<link rel="stylesheet" href="{{m.url}}" />
+						{% endfor %}
+						<!-- Module Style END -->
+						
+						<!-- Module Script START -->
+						{% for m in models.mod_js_require %}
+						{% endfor %}
+						<!-- Module Script END -->
+						
+						<div class="j-mod-preview-box mod-preview-box">
+							<textarea name="" class="j-template-container"  style="display:none;overflow:hidden;">
+							<!-- HTML Template START -->
+							    <!-- ↓ 导航条组件HTML模板 ↓ -->
+								{{models.mod.html_tpl_str|safe}}
+								<!-- ↑ 导航条组件HTML模板 ↑ -->
+							<!-- HTML Template END -->
+							</textarea>
+						</div>
+						
+						<!-- Page Data START -->
+						<script type="text/javascript">
+						(function(){
+						    window['WHOLE_PAGE_DATA'] = {{models.mod.demo_json_str|safe}};
+						})();
+						</script>
+						<!-- Page Data END -->
+						
+					
+				</div>
+	</div>
+	<script type="text/javascript">
+		 seajs.config({
+	        base: 'http://style.aliexpress.com/js/5v'
+		});
+	  $(function(){
+	  		var jsUrl = "{% for m in models.mod_js_require %}{{m.url}}{% endfor %}".replace('http://style.aliexpress.com/js/5v/','');
+	        if($.type(window['WHOLE_PAGE_DATA']) != 'undefined') {
+	            seajs.use(['run/intl-activities/app/mustache/mustache-0.4.0-dev.js',jsUrl], function(mustache,pageAction){
+					$('.j-mod-preview-box')[0].innerHTML = mustache.to_html($('.j-template-container').val(),window['WHOLE_PAGE_DATA']);
+					pageAction.init();
+	            });
+				
+	        }
+	    });
+	</script>
+	<div class="bottom-bar"></div>
+</body>
+</html>

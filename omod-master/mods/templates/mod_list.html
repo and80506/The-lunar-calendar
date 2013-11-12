@@ -1,0 +1,16 @@
+<div class="o-mod-wm">
+    <ul>
+    	{% if  models.mod %}
+			{% for m in models.mod %}
+	        <li data-index="{{forloop.counter}}" data-mod-id="{{m.id}}">
+	            <img src="{{m.img_thumb}}">
+	            <p>
+	                <b>{{m.name}}</b>
+	            </p>
+	        </li>
+			{% endfor %}
+		{% endif %}
+        <ul>
+        </ul>
+    </ul>
+</div>

@@ -1,0 +1,10 @@
+*.pyc
+.DS_Store
+.project
+.pydevproject
+.settings
+*.bak
+sessions/*
+static/attach/*
+static/ics/*
+.settings/*

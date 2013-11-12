@@ -1,0 +1,7 @@
+<!-- 组件template ↓-->
+{% if  models.mod %}
+	{% for m in models.mod %}
+	{{m.html_tpl_str|safe}}
+	{% endfor %}
+{% endif %}
+<!-- 组件template ↑-->

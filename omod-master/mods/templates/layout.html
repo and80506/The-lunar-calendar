@@ -1,0 +1,774 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>$pageInfo.title</title>
+<meta name="keywords" content="$pageInfo.keywords" />
+<meta name="description" content="$pageInfo.description" />
+<meta name="robots" content="nofollow,noindex"/>
+#parse("$pageInfo.style")
+<link rel="stylesheet" href="http://style.aliunicorn.com/5v/wholesale/buyer/base/reset|5v/wholesale/buyer/base/grids|5v/wholesale/activities/common/common|v_3240878290059_0.css" />
+<link rel="stylesheet" href="/omod/media/o-mod-data.css" />
+<link rel="stylesheet" href="http://styleshit.me/demo/src/main.css" />
+<style>
+.grid-c {margin:0 auto 10px;width:990px;min-height:120px;background:#F4F4F4;}
+/*滚动条的背景颜色&&圆角宽度*/
+::-webkit-scrollbar-track-piece{background-color:#fff;border-radius:0;}
+/*滚动条的宽度&&高度*/
+::-webkit-scrollbar{width:12px;height:8px;}
+/*垂直滚动条的样式*/
+::-webkit-scrollbar-thumb:vertical{height:50px;background-color:#999;border-radius:12px;outline:2px solid #fff;outline-offset:-2px;border:2px solid #fff;}
+/*滚动条的hover样式*/
+::-webkit-scrollbar-thumb:hover{height:50px;background-color:#9f9f9f;border-radius:4px;}
+/*水平滚动条的样式*/
+::-webkit-scrollbar-thumb:horizontal{width: 5px;background-color: #CCCCCC;border-radius: 6px;}
+
+.layout {position:relative;margin:0 auto;padding:10px;width:990px;}
+.layout:hover, .layout-active {box-shadow:0 0 5px #555;}
+.layout > div {margin:0;}
+	.layout-opt, .omod-opt {visibility:hidden;position:absolute;overflow:hidden;}
+	/* 布局操作 */
+	.layout-opt {z-index: 1000;right: -57px;bottom: 0;width: 66px;background: rgba(0, 0, 0, 0.6);}
+	.layout:hover .layout-opt, .layout-active .layout-opt {visibility:visible;}
+		.layout-opt li {padding:5px;}
+		.layout-opt li:hover {background:rgba(0,0,0,0.4);}
+			.layout-opt li a {color:#FFF;}
+	/* 组件操作 */
+	.omod-opt {right:10px;background:#BD1A1E;width:90px!important;font-size:12px!important;}
+	.omod-opt-active {visibility:visible;z-index: 10;}
+		.omod-opt li {height: 30px;padding: 0px 5px;line-height: 30px;}
+		.omod-opt li:hover {background:rgba(0,0,0,0.5);}	
+			.omod-opt li a {color:#FFF;}
+	.layout .omod-opt a, .layout .omod-opt a:visited {font-weight: normal;font-size: 12px;float: right;height: 30px;line-height: 30px;margin-right: 10px;padding-right: 9px;background: url(http://style.aliexpress.com/wimg/activities/sprite/sprite.png) no-repeat right -187px;}
+	.omod-preview {position:relative;}
+/* o-mod-window */
+.o-mod-window {position:absolute;display:none;z-index:999;padding:10px 3px 10px 5px;width:500px;height:400px;border:1px solid #CCCCCC;border-radius:8px;box-shadow:0 0 5px #CCC;background:#FFF;}
+	.o-mod-window:after, .o-mod-wm:after {content:"";position:absolute;left:30px;width:0;height:0;border-style:solid;border-color:transparent;border-width:9px 11px;overflow:hidden;}
+.right-arrow .o-mod-window:after, .right-arrow  .o-mod-wm:after {left: auto;right:30px}	
+	.o-mod-window:after {z-index:0;top:-18px;border-bottom-color:#CCCCCC;}
+	/* o-mod-wm */
+	.o-mod-wm {overflow-y:scroll;height:100%;overflow-x:hidden;}
+	.o-mod-wm:after {z-index:1;top:-17px;border-bottom-color:#FFF;}
+		/* 组件列表 */
+		.o-mod-wm ul {margin:0 auto;width:482px;overflow:hidden;}
+			.o-mod-wm li {position:relative;z-index:0;margin-bottom:5px;width:480px;border:1px solid #EFEFEF;}
+				.o-mod-wm li img {display:block;}
+				.o-mod-wm li p {display:block;position:absolute;left:0;bottom:0;width:100%;height:25px;line-height:25px;text-align:center;background:rgba(0,0,0,0.3);overflow:hidden;}
+					.o-mod-wm li b {color:#FFF;font-size:12px;text-shadow:0 0 1px #555;}
+
+/* o-mod-wm-animate */
+.o-mod-wm-animate {position:absolute;}
+	.o-mod-wm-animate img {height:100%;width:100%;}
+
+.page-html {padding:10px 0;text-align:center;overflow:hidden;}
+	.page-html .inp-atext {display:none;position:fixed;top:50px;bottom:50px;left:50%;margin-left:-495px;width:990px;border:1px solid #DDD;box-shadow:0 0 3px;font-family:verdana;line-height:1.5;}
+	.page-html button{position:fixed;bottom:10px;padding:3px 10px;line-height:25px;}
+	.page-html button.get-html {right:10px;}
+	.preview {right:106px;}
+
+</style>
+</head>
+<body>
+#parse("$pageInfo.header")
+<script src="http://style.aliunicorn.com/we/lib/a|v_22f7069eeb41_ea92f9a091a9.js"></script>
+<script>
+    seajs.config({
+        base: 'http://style.aliexpress.com/js/5v'
+    });
+</script>
+<div class="crumb"><a href="http://www.aliexpress.com/">Home</a> &gt; <h2>$pageInfo.title</h2></div>
+
+{% if  layout %}
+	{{layout|safe}}
+{% endif %}
+
+<div class="page-html" id="page-html">
+	<textarea name="" class="inp-atext" cols="30" rows="10" readonly="readonly"></textarea>
+	<button class="preview">预览</button>
+	<button class="get-html">获取HTML</button>
+</div>
+
+<script src="/omod/media/o-mod-data.js"></script>
+<script src="/omod/media/o-mod-data-factory.js"></script>
+<script>
+define('omod_create_page.js', ['run/intl-activities/app/mustache/mustache-0.5.2.js'], 
+function(require, exports, module) {
+	//用于自定义事件的空对象
+    var customEvent = $({});
+	var setting = {
+		//添加组件弹窗id
+		'modWindowId' :  'o-mod-window',
+		//标识一个组件外层容器的类名
+		'modWrapClassName' : 'vi-virtual-module',
+		//标识一个组件的类名空间
+		'modNamespace' : 'omod-',
+		//标识布局的类名
+		'layoutClassName' : 'layout',
+		//布局操作容器类名
+		'layoutOptionClassName' : 'layout-opt',
+		//组件操作容器类名
+		'modOptionClassName' : 'omod-opt',
+		//导入数据容器类名
+		'modDataOptionClassName' : 'o-mod-data'
+	}
+	//添加组件dom节点
+	var modWindow = null;
+	//组件内列表dom节点
+	var modWindwBox = null;
+	//当前加载的组件列表(重新加载后会被重置)
+	var modData = [];
+	//页面依赖的css&&js&&模板
+	var pageWithCss = {};
+	var pageWithJs = {};
+	//保存选择组件模板,用于重新渲染页面
+	var modTemplate = {};
+
+	//当前操作的布局
+	var currentLayout = null;
+	//当前模块
+	var currentOmod = null;
+	//当前操作的模块外层容器
+	var currentOmodWrap = null;
+	var Mustache = require('run/intl-activities/app/mustache/mustache-0.5.2.js');
+
+	var _init = function(){
+		//layout中插入组件相关操作
+		$('.'+setting.modWrapClassName).each(function(){
+			$(this).html('<a href="javascript:;" data-action="addMod">添加组件</a>');
+		})
+		$('.layout').each(function(i){
+			$(this).attr('data-index',i);
+			if($(this).find('.'+setting.modWrapClassName).size() == 1){
+				//单栏布局时一个布局可以添加多个组件
+				$(this).append(
+					'<ul class="layout-opt">'+ 
+						'<li><a href="javascript:;" data-action="addMoreMod">添加组件</a></li>'+
+						'<li><a href="javascript:;" data-action="del">删除布局</a></li>'+
+						'<li><a href="javascript:;" data-action="moveup">布局上移</a></li>'+
+						'<li><a href="javascript:;" data-action="movedown">布局下移</a></li>'+
+					'</ul>'
+				);
+			}else{
+				//非单栏布局时一个布局内一个组件容器只能添加一个组件
+				$(this).append(
+					'<ul class="layout-opt">'+ 
+						'<li><a href="javascript:;" data-action="del">删除布局</a></li>'+
+						'<li><a href="javascript:;" data-action="moveup">布局上移</a></li>'+
+						'<li><a href="javascript:;" data-action="movedown">布局下移</a></li>'+
+					'</ul>'
+				);
+			}
+			
+			$(this).find('div[class^="omod-"]').live('mouseenter', function(){
+				currentOmod = $(this);
+				_chageModOptionState({target: $(this)});
+			}).live('mouseleave',function(){
+				$('.omod-opt').removeClass('omod-opt-active');
+			});
+		})
+
+		//阻止组件中的链接
+		$('.layout a').live('click',function(){
+			if($(this).attr('href').indexOf('http://') != -1){
+				return false;
+			}
+		})
+		
+		//非单栏布局添加组件
+		$('a[data-action="addMod"]').live('click',function(){
+			currentLayout = $(this).parents('.layout');
+			currentOmodWrap = $(this).parents('.'+setting.modWrapClassName);
+			_addMod({target: $(this)});
+		})
+		//layout相关操作
+		$('.layout-opt a').live('click',function(e){
+			var action = $(this).attr('data-action');
+
+			currentLayout = $(this).parents('.layout');
+			currentLayout.addClass('layout-active');
+			//单栏布局添加组件
+			if(action == 'addMoreMod'){
+				currentOmodWrap = currentLayout.find('.'+setting.modWrapClassName);
+				_addMod({target: $(this)});
+			}else{
+				if(modWindow){modWindow.hide();}
+
+				//删除layout
+				if(action == 'del'){
+					if(confirm('确定删除么？')){
+						//删除布局相关css
+						_delModData({modIndex: ''});
+						//删除布局结构
+						currentLayout.animate({height:0}, 150, function(){
+							$(this).remove();
+						});
+					}
+				}
+				//向上移动
+				if(action == 'moveup'){
+					_moveLayout({dir: 'up'});
+				}
+				//向下移动
+				if(action == 'movedown'){
+					_moveLayout({dir: 'down'});
+				}
+			}
+
+			e.stopPropagation();
+		});
+
+		//mod相关操作
+		$('.omod-opt a').live('click',function(e){
+			
+			var oModOpt = $(this).parents('.omod-opt');
+			var action = $(this).attr('data-action');
+			currentLayout = $(this).parents('.layout');
+			currentOmodWrap = $(this).parents('.vi-virtual-module');
+			
+			currentOmod = $(this).parents('.omod-opt').parent();
+			//增加数据
+			if(action == 'add'){
+				_addModData();
+			}else{
+				if(modWindow){modWindow.hide();}
+
+				//删除组件
+				if(action == 'del'){
+					if(confirm('确定删除么？')){
+						//删除组件static
+						_delModData({modIndex: currentOmod.attr('data-index')});
+						//隐藏组件编辑界面
+						oModOpt.removeClass('omod-opt-active');
+						//删除布局结构
+						
+						currentOmod.animate({height:0}, 150, function(){
+							var currentOmodTemp =$(this);
+							var currentOmodWrapTemp =$(this).parents('.vi-virtual-module');
+							
+							currentOmodTemp.remove();
+							if(currentOmodWrapTemp.find('div[class^="omod-"]').size() == 0){
+								currentOmodWrapTemp.html('<a href="javascript:;" data-action="addMod">添加组件</a>');
+							}
+						});
+					}
+				}
+				//向上移动
+				if(action == 'moveup'){
+					_moveOmod({dir: 'up'});
+				}
+				//向下移动
+				if(action == 'movedown'){
+					_moveOmod({dir: 'down'});
+				}
+			}
+
+			e.stopPropagation();
+		});
+
+		//获取页面html
+		$('#page-html').find('.inp-atext').click(function(e){
+			$(this).select();
+			e.stopPropagation();
+		}).end().find('button.get-html').click(function(e){
+			_getPageContent();
+			e.stopPropagation();
+		})
+		
+		//预览
+		$('button.preview').toggle(function(){
+			$('.vi-virtual-module').removeClass('vi-virtual-module').addClass('omod-preview');
+			$(this).html("编辑");
+		},function(){
+			$('.omod-preview').removeClass('omod-preview').addClass('vi-virtual-module');
+			$(this).html("预览");
+		})
+		//隐藏各种弹窗
+		$('body').click(function(){
+			if($('.page-html .inp-atext:visible').length){
+			$('.page-html .inp-atext').hide();
+			}
+			if(modWindow){
+				$('.layout-active').removeClass('layout-active');
+				$('.omod-opt').removeClass('omod-opt-active');
+				modWindow.hide();
+			}
+		});
+
+		_changeLayoutState();
+	};
+
+	/**
+	 * 获取页面html及static
+	 */
+	var _getPageContent = function(){
+		var content = [];
+		var pageStatic = _getPageStatic();
+		var pageCss = [];
+		var linkCss = '';
+		var pageJs = [];
+		var linkJs = '';
+
+		$.each(pageStatic.css, function(i, url){
+			pageCss.push(url.replace('http://style.aliexpress.com/css/', '').replace('.css', ''));
+		});
+
+		$.each(pageStatic.js, function(i, url){
+			pageJs.push(url.replace('http://style.aliexpress.com/js/5v/', '').replace('.js', ''));
+		});
+
+		if(pageCss.length > 0){
+			linkCss = '<link rel="stylesheet" href="http://style.aliunicorn.com/'+ pageCss.join('|') +'.css" />';
+		}
+
+		if(pageJs.length > 0){
+			linkJs = '<script src="http://style.aliunicorn.com/5v/', pageJs.join('|') ,'.js" />';
+		}
+
+		content.push('<!DOCTYPE HTML>\r\n',
+			'<html>\r\n',
+			'<head>\r\n',
+			'    <meta charset="utf-8">\r\n',
+			'    <title>$pageInfo.title</title>\r\n',
+			'    <meta name="keywords" content="$pageInfo.keywords" />\r\n',
+			'    <meta name="description" content="$pageInfo.description" />\r\n',
+			'    <meta name="robots" content="nofollow,noindex"/>\r\n',
+			'    #parse("$pageInfo.style")\r\n',
+			'    ', linkCss ,'\r\n',
+			'    ', linkJs ,'\r\n',
+			'</head>\r\n',
+			'<body>\r\n',
+			'#parse("$pageInfo.header")\r\n',
+			'<div class="crumb"><a href="http://www.aliexpress.com/">Home</a> &gt; <h2>$pageInfo.title</h2></div>\r\n',
+			'<div class="page">\r\n'
+		)
+
+		$('.layout').each(function(){
+			var cloneNode = $(this).clone(true);
+
+			cloneNode.find('.layout-opt').remove().end().find('.omod-opt').remove();
+			content.push(cloneNode.html());
+		});
+
+		content.push(
+			'	</div>\r\n\r\n',
+			'<!-- wholesale alert -->\r\n',
+			'#parse("ft_wholesale_ta")\r\n',
+			'<!-- footer banner -->\r\n',
+			'#parse("ft_wholesale_promotion")\r\n',
+			'<!-- footer html -->\r\n',
+			'#parse("$pageInfo.footer")\r\n',
+			'</body>\r\n',
+			'</html>'
+		)
+
+		console.log(pageStatic);
+
+		$('#page-html .inp-atext').val(content.join('')).show();
+	};
+
+	/**
+	 * 获取页面依赖的static文件
+	 * 根据组件顺序依次加载static文件
+	 */
+	var _getPageStatic = function(){
+		var withCss = [];
+		var withJs = [];
+
+		console.log(pageWithCss);
+		console.log(pageWithJs);
+
+		$('.layout').each(function(){
+			var layoutIndex = $(this).attr('data-index');
+			var theCss = pageWithCss[layoutIndex];
+			var theJs = pageWithJs[layoutIndex];
+
+			if(theCss){
+				$.each(theCss, function(i, urls){
+					$.each(urls, function(n, url){
+						if(withCss.indexOf(url) == -1){
+							withCss.push(url);
+						}
+					});
+				});
+			}
+			if(theJs){
+				$.each(theJs, function(i, urls){
+					$.each(urls, function(n, url){
+						if(withJs.indexOf(url) == -1){
+							withJs.push(url);
+						}
+					});
+				})
+			}
+		});
+
+		return {css: withCss, js: withJs};
+	}
+
+	/**
+	 * 为组件添加数据
+	 */
+	var _addModData = function(){
+		var layoutIndex = currentLayout.attr('data-index');
+		var modIndex = currentOmod.attr('data-index');
+		customEvent.trigger('beforFillData', [currentOmod, modTemplate[layoutIndex][modIndex]]);
+	}
+
+
+	/**
+	 * 显示/隐藏组件编辑功能(删除)
+	 * @param {HTMLElement} obj.target 组件dom节点
+	 */
+	var _chageModOptionState = function(obj){
+		var modNode = obj.target;
+		var modOffset = modNode.position();
+		var modOpt = currentOmod.find('.omod-opt');
+		var prevMod = currentOmod.prev();
+		var nextMod = currentOmod.next(); 
+
+		modOpt.find('li').show();
+
+		if(prevMod.size() == 0){
+			modOpt.find('li').eq(2).hide();
+		}
+
+		if(nextMod.size() == 0){
+			modOpt.find('li').eq(3).hide();
+		}
+		modOpt.css({top: modOffset.top});
+		$('.omod-opt').removeClass('omod-opt-active');
+		modOpt.addClass('omod-opt-active');
+	}
+
+	/**
+	 * 调整组件上下位置
+	 * @param {String} obj.dir 移动方向 up|down
+	 */
+	var _moveOmod = function(obj){
+		var targetMod = null;
+
+		if(obj.dir == 'up'){
+			targetMod = currentOmod.prev();
+			if(targetMod.size() > 0 && targetMod.attr('class').indexOf('omod-') != -1){
+				targetMod.before(currentOmod);
+			}
+		}
+
+		if(obj.dir == 'down'){
+			targetMod = currentOmod.next();
+			if(targetMod.size() > 0 && targetMod.attr('class').indexOf('omod-') != -1){
+				targetMod.after(currentOmod);
+			}
+		}
+	};
+
+	/**
+	 * 调整布局上下位置
+	 * @param {String} obj.dir 移动方向 up|down
+	 */
+	var _moveLayout = function(obj){
+		var targetLayout = null;
+
+		if(obj.dir == 'up'){
+			targetLayout = currentLayout.prev();
+			if(targetLayout.size() > 0 && targetLayout.hasClass('layout')){
+				targetLayout.before(currentLayout);
+			}
+		}
+
+		if(obj.dir == 'down'){
+			targetLayout = currentLayout.next();
+			if(targetLayout.size() > 0 && targetLayout.hasClass('layout')){
+				targetLayout.after(currentLayout);
+			}
+		}
+
+		_changeLayoutState();
+	};
+
+	/**
+	 * 显示布局的编辑功能
+	 */
+	var _changeLayoutState = function(){
+		$('.layout-opt li').show();
+
+		//隐藏第一个layout的上移连接
+		$('.layout-opt').eq(0).find('a[data-action="moveup"]').parent().hide();
+
+		//隐藏最后一个layout的下移连接
+		$('.layout-opt').eq(-1).find('a[data-action="movedown"]').parent().hide();
+
+		if(currentLayout){
+			currentLayout.removeClass('layout-active');
+		}
+	};
+
+	/**
+	 * @param {object} obj.target 响应鼠标事件的添加按钮节点
+	 */
+	var _addMod = function(obj){
+		var layoutType = currentOmodWrap.attr('data-layout-type');
+		var offset = obj.target.offset();
+		
+		if($('#'+ setting.modWindowId).size() == 0){
+			$('body').append('<div id="o-mod-window" class="o-mod-window"><div class="o-mod-wm"></div></div>');
+		}
+		modWindow = $('#'+ setting.modWindowId);
+		modWindwBox = modWindow.find('.o-mod-wm');
+		if(obj.target.attr('data-action') == 'addMod'){
+			$('body').removeClass('right-arrow');
+			modWindow.css({'top': offset.top + 25, 'left': offset.left, 'z-index': 1000});
+		}else{
+			$('body').addClass('right-arrow');
+			modWindow.css({'top': offset.top + 25, 'left': offset.left - modWindow.width() + 40});
+		}
+		
+
+		$.ajax({
+			type : 'GET',
+			url : '/omod/get_mod',
+			success : function(data){
+				modData = window['data' ]= data.modList;
+			}
+		});
+		$.ajax({
+			type : 'GET',
+			url : '/omod/layout_type/' + layoutType,
+			success : function(data){
+				//保存加载的组件数据
+				modWindwBox.html(data);
+				modWindow.show();
+
+				//阻止事件冒泡
+				modWindow.click(function(e){
+					e.stopPropagation();
+				})
+		
+				modWindow.find('li').dblclick(function(){
+					_fillLayoutWithMod({mod:$(this)});
+				})
+			}
+		});
+	};
+	
+
+	/**
+	 * 用组件填充布局
+	 * @param {HTMLelement} obj.mod 选中的组件库
+	 */
+	var _fillLayoutWithMod = function(obj){
+		_showFillAnimate(obj.mod, function(){
+			//当前选中的组件id,匹配数据库id
+			var theModData = modData[obj.mod.attr('data-mod-id')-1];
+			//当前组件索引
+			var	modIndex;
+			//var modIndex = currentLayout.find('.layout-opt').prev().children().size();
+			console.log(currentLayout.find('.vi-virtual-module'),currentOmodWrap)
+			if(currentLayout.find('.vi-virtual-module').size >1){
+				modIndex = currentLayout.find('.vi-virtual-module').index(currentOmodWrap);
+			}else{
+				modIndex = currentLayout.find('div[class^="omod-"]').size();
+			}
+			console.log(modIndex);
+			var layoutIndex = currentLayout.attr('data-index');
+			
+			//载入组件依赖的css
+			_loadModStatic({type: 'css', data: theModData['cssRequire'], modIndex: modIndex});
+			//载入组件依赖的js
+			_loadModStatic({type: 'js', data: theModData['jsRequire'], modIndex: modIndex});
+
+			_saveModTemplate({tmp: theModData['htmlTplStr'], modIndex: modIndex});
+
+			//用预定义的数据渲染组件
+			_renderMod({mod:theModData, modIndex: modIndex});
+		})
+	};
+
+	/**
+	 * 显示选中组件库的动画
+	 */
+	var _showFillAnimate = function(source, callback){
+		var sOffset = source.offset();
+		var tOffset = currentLayout.offset();
+		var animateNode = $('<ul class="o-mod-wm-animate"></ul>');
+
+		animateNode.css({top: sOffset.top, left: sOffset.left}).append(source.clone(true));
+		animateNode.appendTo($('body')).animate(
+			{
+				top: tOffset.top,
+				left: tOffset.left,
+				width: 0,
+				height: 0
+			}, 300,
+			function(){
+				animateNode.remove();
+				callback();
+			}
+		)
+	};
+
+	/**
+	 * 加载并保存组件依赖的static文件
+	 * @param {String} obj.type static文件类型
+	 * @param {Array} obj.data static文件列表
+	 * @param {String} obj.modIndex 组件索引
+	 */
+	var _loadModStatic = function(obj){
+		var layoutInde = currentLayout.attr('data-index');
+		var modIndex = obj.modIndex
+
+		if(!pageWithCss[layoutInde]){
+			pageWithCss[layoutInde] = {};
+		}
+		if(!pageWithJs[layoutInde]){
+			pageWithJs[layoutInde] = {};
+		}
+
+		if(!pageWithCss[layoutInde][modIndex]){
+			pageWithCss[layoutInde][modIndex] = [];
+		}
+		if(!pageWithJs[layoutInde][modIndex]){
+			pageWithJs[layoutInde][modIndex] = [];
+		}
+
+		$.each(obj.data, function(i, staticUrl){
+			if(obj.type == 'css' && staticUrl != ''){
+				if (document.createStyleSheet){
+	                document.createStyleSheet(staticUrl);
+	            }else{
+	                $("head").append($('<link rel="stylesheet" href="'+ staticUrl +'" />'));
+	            }
+	            pageWithCss[layoutInde][modIndex].push(staticUrl);
+			}
+
+			if(obj.type == 'js' && staticUrl != ''){
+				$.getScript(staticUrl);
+				pageWithJs[layoutInde][modIndex].push(staticUrl);
+			}
+		})
+	};
+
+	/**
+	 * 保存选中组件的模板
+	 * @param {String} obj.tmp 组件模板
+	 * @param {String} obj.modIndex 组件索引
+	 */
+	var _saveModTemplate = function(obj){
+		var layoutIndex = currentLayout.attr('data-index');
+		var modIndex = obj.modIndex;
+
+		if(!modTemplate[layoutIndex]){
+			modTemplate[layoutIndex] = {};
+		}
+
+		modTemplate[layoutIndex][modIndex] = obj.tmp;
+		console.log(modTemplate)
+	};
+
+	/**
+	 * 删除布局数据
+	 * @param {String} obj.modIndex 组件索引
+	 */
+	var _delModData = function(obj){
+		var layoutIndex = currentLayout.attr('data-index');
+		var modIndex = obj.modIndex;
+
+		if(layoutIndex && layoutIndex != ''){
+			if(modIndex && modIndex != ''){
+				//删除组件css
+				if(pageWithCss[layoutIndex] && pageWithCss[layoutIndex][modIndex]){
+					pageWithCss[layoutIndex][modIndex] = null;
+				}
+				//删除组件js
+				if(pageWithJs[layoutIndex] && pageWithJs[layoutIndex][modIndex]){
+					pageWithJs[layoutIndex][modIndex] = null;
+				}
+				//删除保存的组件模板数据
+				if(modTemplate[layoutIndex] && modTemplate[layoutIndex][modIndex]){
+					modTemplate[layoutIndex][modIndex] = null;
+				}
+			}else{
+				//删除组建下全部的css
+				if(pageWithCss[layoutIndex]){
+					pageWithCss[layoutIndex] = null;
+				}
+				//删除组件下全部js
+				if(pageWithJs[layoutIndex]){
+					pageWithJs[layoutIndex] = null;
+				}
+				//删除组件下全部模板
+				if(modTemplate[layoutIndex]){
+					modTemplate[layoutIndex] = null;
+				}
+			}
+		}
+	};
+
+	/**
+	 * 用预定义的数据渲s染组件
+	 * @param {Object} obj.mod 组件数据
+	 * @param {String} obj.modIndex 组件索引
+	 */
+	var _renderMod = function(obj){
+		var modObj = obj.mod;
+		var modHtml = $(Mustache.to_html(modObj.htmlTplStr, $.parseJSON(modObj.demoJsonStr)));
+		modHtml.append(
+				'<ul class="omod-opt">'+
+					'<li><a href="javascript:;" data-action="add">导入数据</a></li>'+
+					'<li><a href="javascript:;" data-action="del">删除组件</a></li>'+
+					'<li><a href="javascript:;" data-action="moveup">组件上移</a></li>'+
+					'<li><a href="javascript:;" data-action="movedown">组件下移</a></li>'+
+				'</ul>'
+			);
+		modHtml.attr('data-index', obj.modIndex);
+		
+		if(currentLayout.find('.'+setting.modWrapClassName).size() == 1 ){
+			currentOmodWrap.find('a[data-action="addMod"]').remove();
+			currentOmodWrap.append(modHtml);
+			
+		}else{
+			currentOmodWrap.find('a[data-action="addMod"]').replaceWith(modHtml);
+		}
+
+		_resetModWindowPostion();
+	};
+
+	/**
+	 * 重置逐渐列表窗口位置
+	 */
+	var _resetModWindowPostion = function(targetNode){
+		var targetNode = currentLayout.find('.layout-opt a').eq(0);
+		var top = parseInt(targetNode.offset().top, 10) + 25;
+
+		modWindow.animate({top: top}, 100)
+	}
+
+	return {
+		init: _init,
+		onBeforFillData: function (func) {
+            customEvent.bind('beforFillData', func);
+        }
+	}
+});
+
+$(function(){
+	var cModData = null;
+	var cModPage = null;
+
+	seajs.use('o-mod-data.js', function(modData) {
+		cModData = modData;
+		cModData.init();
+	});
+
+	seajs.use('omod_create_page.js', function(omodPage){
+		omodPage.init();
+		omodPage.onBeforFillData(function(event, obj, tmp){
+			cModData.showDataPanl({target: obj, tmp: tmp})
+		})
+	});
+});
+</script>
+</body>
+</html>
+
+
