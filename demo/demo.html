@@ -1,0 +1,366 @@
+<html>
+<head>
+  <title>calendar</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="demo.css"/>
+  <style type="text/css">
+    /*demo样式*/
+    .wrapper {width: 980px; margin: 0 auto;}
+    .calendar1, .calendar2 {margin-right: -20px;}
+    .t {margin-bottom: 10px;}
+    .b1, .b2 {float: left;margin-left: 20px;}
+    .p1 {color:red;padding:10px 0;}
+    .ta {display:block;width:480px;height:400px;}
+    .t:after{ clear:both; content:"."; height:0; display:block; overflow:hidden;}
+    table {font-size: 12px!important;}/*bugfix: table内font-size诡异得呈现为16px;*/
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="calendar1">
+      <div class="t">
+        <div class="b1">
+          <p class="p1">html日历模板1</p>
+          <textarea id="hotelsCalendarTemplate" class="ta">
+            <div class="groupbuy_writing">
+              <span class="writing_left">房态信息：</span>
+              <p class="writing_right">
+                &nbsp;&nbsp;<b>·</b>
+                请致电酒店预约，房态信息仅供参考；
+              </p>
+            </div>
+            <div class="full-carlendar">
+              <div class="time_reservation">
+                <a href="javascript:;" class="btn-month last-month <%= data.prevBtnCls %>" id="prevCalendarBtn" title="上月"></a>
+                <span class="years_month"><%= data.year %>年<%= data.month %>月 预约</span>
+                <a href="javascript:;" class="btn-month next-month <%= data.nextBtnCls %>" id="nextCalendarBtn" title="下月"></a>
+              </div>
+              <table cellspacing="0" cellpadding="0" border="0">
+                <tbody>
+                  <tr>
+                    <th style=" width:14%;">SUN &nbsp;日</th>
+                    <th style=" width:14%;">MON &nbsp;一</th>
+                    <th style=" width:14%;">TUE &nbsp;二</th>
+                    <th style=" width:14%;">WED &nbsp;三</th>
+                    <th style=" width:14%;">THU &nbsp;四</th>
+                    <th style=" width:14%;">FRI &nbsp;五</th>
+                    <th style=" width:14%;">SAT &nbsp;六</th>
+                  </tr>
+                  <% for (var i = 0, len = data.extraInfo.length; i < len; i++ ) { %>
+                    <% var dataI = data.extraInfo[i];%>
+
+                    <% if (i == 0) { %>
+                    <tr>
+                    <% } else if (i == len){ %>
+                    </tr>
+                    <% } else if (i%7 == 0){ %>
+                    </tr>
+                    <tr>
+                    <%} else { %>
+                    <% } %>
+
+                    <% if(!dataI) {%>
+                    <td></td>
+                    <% }else { %>
+                      <% switch (dataI.whichMonth) {
+                        case 'lastMonth': %>
+                          <td>
+                          <% break;
+                        case 'currentMonth': %>
+                          <% if(dataI.type == 2) {%>
+                          <td class="bgpic_vertical">
+                          <% }else { %>
+                          <td>
+                          <% } %>
+                          <% break;
+                        case 'nextMonth': %>
+                          <% if(dataI.type == 2) {%>
+                          <td class="munber_color bgpic_vertical">
+                          <% }else { %>
+                          <td class="munber_color">
+                          <% } %>
+                          <% break;
+                        default: %>
+                          <td>
+                          <% break;
+                      } %>
+
+                      <% if(dataI.whichMonth == 'lastMonth') {%>
+                      <span class="munber_color"><%= dataI.date %></span>
+                      <% }else if(!dataI.type){ %>
+                      <span><%= dataI.date %></span>
+                      <% }else if(dataI.festival){ %>
+                      <span><%= dataI.festival %></span>
+                      <% } else {%>
+                      <span><%= dataI.date %></span>
+                      <% } %>
+
+                      <% switch (dataI.type) {
+                        case 1: %>
+                          <span class="table_wu"><%= dataI.text %></span>
+                          <% break;
+                        case 2: %>
+                          <span class="backg_you"><%= dataI.text %></span>
+                          <% break;
+                        case 3: %>
+                          <% switch (dataI.whichMonth) {
+                            case 'lastMonth': %>
+                              <% break;
+                            case 'currentMonth': %>
+                              <span class="backg_you"><%= dataI.text %></span>
+                              <% break;
+                            case 'nextMonth': %>
+                              <span class="gray"><%= dataI.text %></span>
+                              <% break;
+                            default: %>
+                              <span class="backg_you"><%= dataI.text %></span>
+                              <% break;
+                          } %>
+                          <% break;
+                        default: %>
+                          <span><%= dataI.text %></span>
+                          <% break;
+                      } %>
+
+                      </td>
+
+                    <% } %>
+
+                  <% } %>
+                   
+                </tbody>
+              </table>  
+            </div>
+          </textarea>
+        </div>
+        <div class="b1">
+          <p class="p1">组件配置</p>
+          <textarea id="calendarConfig" class="ta">
+            {
+              //房态数据,使用本地数据或者ajax获取, 配置一个即可
+              "extraData": {
+                //使用本地数据
+                "localData": '{"start":"2013-11-1","end":"2014-2-28","dates":[{"date":"2013-11-10","value":"不适用","type":2},{"date":"2013-11-11","value":"不适用","type":2},{"date":"2013-11-12","value":"不适用","type":2},{"date":"2013-11-13","value":"不适用","type":2},{"date":"2013-11-14","value":"不适用","type":2},{"date":"2013-11-17","value":"不适用","type":2},{"date":"2013-11-18","value":"不适用","type":2},{"date":"2013-11-19","value":"不适用","type":2},{"date":"2013-11-20","value":"不适用","type":2},{"date":"2013-11-21","value":"不适用","type":2},{"date":"2013-11-24","value":"不适用","type":2},{"date":"2013-11-25","value":"不适用","type":2},{"date":"2013-11-26","value":"不适用","type":2},{"date":"2013-11-27","value":"不适用","type":2},{"date":"2013-11-28","value":"不适用","type":2},{"date":"2013-11-3","value":"不适用","type":2},{"date":"2013-11-4","value":"不适用","type":2},{"date":"2013-11-5","value":"不适用","type":2},{"date":"2013-11-6","value":"不适用","type":2},{"date":"2013-11-7","value":"不适用","type":2},{"date":"2013-12-1","value":"不适用","type":2},{"date":"2013-12-10","value":"不适用","type":2},{"date":"2013-12-11","value":"不适用","type":2},{"date":"2013-12-12","value":"不适用","type":2},{"date":"2013-12-15","value":"不适用","type":2},{"date":"2013-12-16","value":"不适用","type":2},{"date":"2013-12-17","value":"不适用","type":2},{"date":"2013-12-18","value":"不适用","type":2},{"date":"2013-12-19","value":"不适用","type":2},{"date":"2013-12-2","value":"不适用","type":2},{"date":"2013-12-22","value":"不适用","type":2},{"date":"2013-12-23","value":"不适用","type":2},{"date":"2013-12-24","value":"不适用","type":2},{"date":"2013-12-25","value":"不适用","type":2},{"date":"2013-12-26","value":"不适用","type":2},{"date":"2013-12-29","value":"不适用","type":2},{"date":"2013-12-3","value":"不适用","type":2},{"date":"2013-12-30","value":"不适用","type":2},{"date":"2013-12-31","value":"不适用","type":2},{"date":"2013-12-4","value":"不适用","type":2},{"date":"2013-12-5","value":"不适用","type":2},{"date":"2013-12-8","value":"不适用","type":2},{"date":"2013-12-9","value":"不适用","type":2},{"date":"2014-1-1","value":"不适用","type":2},{"date":"2014-1-12","value":"不适用","type":2},{"date":"2014-1-13","value":"不适用","type":2},{"date":"2014-1-14","value":"不适用","type":2},{"date":"2014-1-15","value":"不适用","type":2},{"date":"2014-1-16","value":"不适用","type":2},{"date":"2014-1-19","value":"不适用","type":2},{"date":"2014-1-2","value":"不适用","type":2},{"date":"2014-1-20","value":"不适用","type":2},{"date":"2014-1-21","value":"不适用","type":2},{"date":"2014-1-22","value":"不适用","type":2},{"date":"2014-1-23","value":"不适用","type":2},{"date":"2014-1-26","value":"不适用","type":2},{"date":"2014-1-27","value":"不适用","type":2},{"date":"2014-1-28","value":"不适用","type":2},{"date":"2014-1-29","value":"不适用","type":2},{"date":"2014-1-30","value":"不适用","type":2},{"date":"2014-1-5","value":"不适用","type":2},{"date":"2014-1-6","value":"不适用","type":2},{"date":"2014-1-7","value":"不适用","type":2},{"date":"2014-1-8","value":"不适用","type":2},{"date":"2014-1-9","value":"不适用","type":2},{"date":"2014-2-10","value":"不适用","type":2},{"date":"2014-2-11","value":"不适用","type":2},{"date":"2014-2-12","value":"不适用","type":2},{"date":"2014-2-13","value":"不适用","type":2},{"date":"2014-2-16","value":"不适用","type":2},{"date":"2014-2-17","value":"不适用","type":2},{"date":"2014-2-18","value":"不适用","type":2},{"date":"2014-2-19","value":"不适用","type":2},{"date":"2014-2-2","value":"不适用","type":2},{"date":"2014-2-20","value":"不适用","type":2},{"date":"2014-2-23","value":"不适用","type":2},{"date":"2014-2-24","value":"不适用","type":2},{"date":"2014-2-25","value":"不适用","type":2},{"date":"2014-2-26","value":"不适用","type":2},{"date":"2014-2-27","value":"不适用","type":2},{"date":"2014-2-3","value":"不适用","type":2},{"date":"2014-2-4","value":"不适用","type":2},{"date":"2014-2-5","value":"不适用","type":2},{"date":"2014-2-6","value":"不适用","type":2},{"date":"2014-2-9","value":"不适用","type":2}]}',
+                //使用ajax方式
+                "ajaxUrl": "ajax/RoomInfoForAppoint.aspx?ProductId=91748&isDetailPage=1"
+              },
+              //html模板
+              "tpl": document.getElementById('hotelsCalendarTemplate').value,
+              //上下月按钮
+              "prevBtn": '#prevCalendarBtn',
+              "nextBtn": '#nextCalendarBtn',
+              //上下月按钮disable & enable 样式
+              "cls": {
+                "prevEnable": "jiantou_gree_l",
+                "prevDisable": "jiantou_gray_l",
+                "nextEnable": "jiantou_gree_r",
+                "nextDisable": "jiantou_gray_r"
+              },
+              //日历内房态文案
+              "text": {
+                1: "满房",
+                2: "不适用",
+                3: "有房"
+              },
+              //是否显示节假日（默认true,优先显示国历节日->农历节日->节气->今明后， false时只显示今明后）
+              "isShowFestival": true,
+              //今明后文案可选配置项, 默认文案今天/明天/后天
+              "festival": {
+                "today": "今天",
+                "tomorrow": "明天",
+                "dopodomani": "后天"
+              },
+              //ajax加载数据时可选配置的loading样式
+              "loading": {
+                'show': function () {
+                  document.getElementById('reservation_loading').style.display = '';
+                },
+                'hide': function () {
+                  document.getElementById('reservation_loading').style.display = 'none';
+                }
+              }
+            }
+          </textarea>
+        </div>
+        <p class="p1">
+          可在修改模板或配置项后<button onclick="new fullCalendar($('.room_statu'), eval('(' + $('#calendarConfig').val() + ')'))">重绘日历</button>
+        </p>
+      </div>
+      <div class="hotel_notice">
+        <div class="room_statu"></div>
+      </div>
+    </div>
+    <div class="calendar2">
+      <div class="t">
+        <div class="b1">
+          <p class="p1">html日历模板2</p>
+          <textarea id="hotelsCalendarTemplate1" class="ta">
+            <div class="table_time_reservation">
+              <p class="reservation_loading" id="reservation_loading" style="display:none;"><img alt="" src="http://pic.c-ctrip.com/mystery_hotels111102/loading_animation_20b.gif"></p>
+              <div class="time_reservation">
+                <a href="javascript:;" class="btn-month last-month <%= data.prevBtnCls %>" id="prevCalendarBtn" title="上月"></a>
+                <span class="years_month"><%= data.year %>年<%= data.month %>月 预约</span>
+                <a href="javascript:;" class="btn-month next-month <%= data.nextBtnCls %>" id="nextCalendarBtn" title="下月"></a>
+              </div>
+              <table cellspacing="0" cellpadding="0" border="0">
+                <tbody>
+                <tr>
+                  <th style=" width:14%;">日</th>
+                  <th style=" width:14%;">一</th>
+                  <th style=" width:14%;">二</th>
+                  <th style=" width:14%;">三</th>
+                  <th style=" width:14%;">四</th>
+                  <th style=" width:14%;">五</th>
+                  <th style=" width:14%;">六</th>
+                </tr>
+                <% for (var i = 0, len = data.extraInfo.length; i < len; i++ ) { %>
+                  <% var dataI = data.extraInfo[i],
+                       tdCls = ""; %>
+
+                  <% if (i == 0) { %>
+                  <tr>
+                  <% } else if (i == len){ %>
+                  </tr>
+                  <% } else if (i%7 == 0){ %>
+                  </tr>
+                  <tr>
+                  <%} else { %>
+                  <% } %>
+
+                  <% if(!dataI) {%>
+                  <td></td>
+                  <% }else { %>
+                    <% switch (dataI.whichMonth) {
+                      case 'lastMonth': %>
+                        <% break;
+                      case 'currentMonth':
+                      case 'nextMonth': %>
+
+                        <% if(dataI.festival) {
+                          tdCls = "tdbackg";
+                         }
+                         if(dataI.type == 2) { 
+                          tdCls += " bgpic_transverse";
+                         }else {
+                          tdCls += " blue_backg";
+                         }
+                        break;
+                      default: %>
+                        <% break;
+                    } %>
+
+                    <% tdCls.replace(/^\s+/g, "");
+                    if(!tdCls) { %>
+                    <td>
+                    <% } else { %>
+                    <td class="<%= tdCls %>">
+                    <% } %>
+
+                    <% if(dataI.whichMonth == 'lastMonth') {%>
+                    <span class="munber_color"><%= dataI.date %></span>
+                    <% }else if(!dataI.type){ %>
+                    <span><%= dataI.date %></span>
+                    <% } else if(dataI.festival){%>
+                    <span><%= dataI.festival %></span>
+                    <% } else {%>
+                    <span><%= dataI.date %></span>
+                    <% } %>
+
+                    <% switch (dataI.type) {
+                      case 1: %>
+                        <span class="table_wu"><%= dataI.text %></span>
+                        <% break;
+                      case 2: %>
+                        <span></span>
+                        <% break;
+                      case 3: %>
+                        <% switch (dataI.whichMonth) {
+                          case 'lastMonth': %>
+                            <% break;
+                          case 'currentMonth': %>
+                            <span class="backg_you"><%= dataI.text %></span>
+                            <% break;
+                          case 'nextMonth': %>
+                            <span class="munber_color"><%= dataI.text %></span>
+                            <% break;
+                          default: %>
+                            <span></span>
+                            <% break;
+                        } %>
+                        <% break;
+                      default: %>
+                        <span></span>
+                        <% break;
+                    } %>
+
+                    </td>
+
+                  <% } %>
+
+                <% } %>
+              </tbody>
+            </table>
+            </div>
+          </textarea>
+        </div>
+        <div class="b1">
+          <p class="p1">组件配置</p>
+          <textarea id="calendarConfig1" class="ta">
+            {
+              //房态数据,使用本地数据或者ajax获取, 配置一个即可
+              "extraData": {
+                //使用本地数据
+                "localData": '{}',
+                //使用ajax方式
+                "ajaxUrl": "ajax/RoomInfoForAppoint.aspx?ProductId=91748&isDetailPage=1"
+              },
+              //html模板
+              "tpl": document.getElementById('hotelsCalendarTemplate1').value,
+              "prevBtn": '#prevCalendarBtn',
+              "nextBtn": '#nextCalendarBtn',
+              "isShowFestival": false,
+              "cls": {
+                "prevEnable": "jiantou_gree_l",
+                "prevDisable": "jiantou_gray_l",
+                "nextEnable": "jiantou_gree_r",
+                "nextDisable": "jiantou_gray_r"
+              },
+              "text": {
+                1: "满",
+                2: "",
+                3: "有"
+              },
+              "isShowFestival": false,
+              "festival": {
+                "today": "今",
+                "tomorrow": "明",
+                "dopodomani": "后"
+              },
+              "loading": {
+                'show': function () {
+                  document.getElementById('reservation_loading').style.display = '';
+                },
+                'hide': function () {
+                  document.getElementById('reservation_loading').style.display = 'none';
+                }
+              }
+            }
+          </textarea>
+        </div>
+        <p class="p1">
+          可在修改模板或配置项后<button onclick="new fullCalendar($('.room_statu1'), eval('(' + $('#calendarConfig1').val() + ')'))">重绘日历</button>
+        </p>
+      </div>
+      <div class="room_statu1"></div>
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script type="text/javascript" src="../src/tmpl.js"></script>
+  <script type="text/javascript" src="../src/festival.js"></script>
+  <script type="text/javascript" src="../src/full-calendar.js"></script>
+  <script type="text/javascript">
+    new fullCalendar($('.room_statu'), eval('(' + $('#calendarConfig').val() + ')'));
+    new fullCalendar($('.room_statu1'), eval('(' + $('#calendarConfig1').val() + ')'));
+  </script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+/*日历组件样式*/
+
+html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, em, button { margin:0; padding:0; }
+html { background-color:#FFF; }
+body { background-color:#FFF; font-size:12px; line-height:1.5; font-family:Arial,Simsun,sans-serif; color:#333; }
+img, fieldset { margin:0; padding:0; border:0; }
+input, textarea { font-size:12px; }
+table { border-collapse:collapse; }
+a { color:#06C; text-decoration:none; outline:none; }
+a:hover { text-decoration:underline; }
+h1, h2, h3, h4, h5 { font-family:Tahoma,Simsun,sans-serif; }
+ul li, ol li { list-style:none; }
+dfn { margin-right:2px; font-style:normal; font-size:12px; font-family:Arial !important; }
+b,strong{ font-weight:normal;}
+section { display:block; }
+
+/*日历组件样式*/
+.groupbuy_writing{ display:block; overflow:hidden; line-height:25px; _width:600px;}
+.full-carlendar{ width:780px; height:235px; display:block; margin:5px 0 0 94px;}
+.time_reservation{ width:178px; height:29px; background-color:#f4f4f4; border:1px solid #e4e4e4; padding:9px 10px 0 10px;}
+.jiantou_gray_l,.jiantou_gree_l,.jiantou_gree_l:hover,.jiantou_gray_r,.jiantou_gree_r,.jiantou_gree_r:hover{ float:left; width:20px; height:20px; background: url("http://pic.c-ctrip.com/group/detail_gbuydt.png") no-repeat -101px -104px;}
+.jiantou_gray_l{ cursor:default;}
+.jiantou_gree_l{ background-position:-125px -104px;}
+.jiantou_gree_l:hover{ background-position:-173px -104px}
+.jiantou_gray_r{ background-position:-101px -128px; cursor:default;}
+.jiantou_gree_r{ background-position:-125px -128px;}
+.jiantou_gree_r:hover{ background-position:-173px -128px;}
+.years_month{ float:left; width:138px; _width:135px; height:20px; text-align:center; line-height:20px; font-family:"Microsoft YaHei"; font-size:14px;}
+.table_time_reservation table,.full-carlendar table{ width:200px; background-color:#fff; margin:-1px 0 0 0}
+.table_time_reservation table th,.full-carlendar table th{border:1px solid #e4e4e4; color:#999; font-weight:normal}
+.table_time_reservation table td,.full-carlendar table td{ border:1px solid #e4e4e4; height:42px; text-align:center; vertical-align:top; padding:5px 0 0 0;}
+.munber_color{ font-family:Arial; color:#cccccc;}
+.tdbackg{ background-color:#ffd8d8}
+.table_wu{ color:#e64d5d; margin:0 0 0 12px}
+.tdbackg .table_wu{ margin:0;}
+.blue_backg{ background-color:#ebffeb}
+.bgpic_transverse{ width:28px; height:44px; color:#ccc; background: url("http://pic.c-ctrip.com/group/detail_gbuydt.png") no-repeat -272px -104px;}
+.backg_you{ color:#999999;}
+.table_time_reservation table td span{ display:block}
+/*full-carlendar*/
+.full-carlendar .time_reservation{ width:738px; padding:9px 20px 0 20px}
+.full-carlendar .years_month{ width:696px; _width:695px;}
+.full-carlendar table{ width:780px;}
+.full-carlendar table th{ color:#999999; font-weight:normal;}
+.full-carlendar table td{ height:33px; vertical-align:middle; font-weight:bold; padding:0;}
+.full-carlendar .munber_color{ font-weight:bold; margin:0 0 0 -38px;}
+.full-carlendar .tdbackg,.full-carlendar .blue_backg td{ background-color:#fff; padding:0}
+.full-carlendar table .bgpic_vertical{ width:111px; height:33px; background: url("http://pic.c-ctrip.com/group/detail_gbuydt.png") no-repeat left -322px;}
+.full-carlendar .backg_you{ color:#4fb03c; font-weight:normal; margin:0 0 0 12px}
+.full-carlendar .bgpic_vertical .backg_you{ color:#ccc; margin:0 0 0 20px;}
+.full-carlendar .munber_color span{ font-weight:bold;}
+.full-carlendar .munber_color .gray{ margin:0 0 0 12px}
+.full-carlendar .munber_color_pad{ padding:5px 0 0 0; text-align:center}
+
+/*1024*/
+@media screen and (max-width:1200px) {
+  #base_bd {width:980px;}
+  .buy_content{ width:980px;}
+  .buy_cont_input .input-text{ width:175px;}
+  .buy_cont_input .time{ width:118px;}
+  .buy_cont_input .input-text-width{ width:202px;}
+  .buy_shop_cart{ padding:0 32px 0 22px;}
+  .buy_input_city{ elevation:108px;}
+  .buy_search{ left:455px;}
+  .det07_left_picture{ width:350px;}
+  .left_picture_topimg{ width:350px;}
+  .picture_bgimg{ width:350px;}
+  .picture_bgimg img{ width:350px;}
+  .left_picture_listimg a{ width:64px; margin:0 7px 0 0;}
+  .left_picture_listimg a img{ width:64px;}
+  .left_picture_listimg a .on_backgr{ width:58px;}
+  .left_picture_listimg .on_backgr em{ left:26px;}
+  .left_picture_listimg .picture_listimg_entire{ width:66px;}
+  .detamid_price_number{ display:inline-block; _display:block}
+  .number_black,.number_gray{ margin:0 0 0 2px}
+  .detamid_number a{ position:relative; top:13px; left:265px; margin:0; display:block;}
+  .service_middle{ width:202px}
+  .detamidd_left_lest{ width:395px;}
+  .detamid_hotel_address{ width:395px;}
+  .detamid_valid{ width:395px;}
+  .detamid_product_quantity{ width:395px;}
+  .dweamidd_down_left{ width:760px;}
+  .down_left_list ul{ margin:0 0 0 5px;}
+  .down_left_list ul li{ margin:0 15px 0 0}
+  .list_bgjian_grayr, .list_bgjian_bluer, .list_bgjian_bluer:hover{ margin:40px 0 0 2px}
+  .detail_lists{ width:400px;}
+  .dwmid_nav_left a{ width:105px;}
+  .left_map_pic{ width:350px;}
+  .left_map_pic .map{ width:350px}
+  .left_map_informat{ width:385px;}
+  .left_map_informat p span{ width:256px;}
+  .full-carlendar{ width:618px;}
+  .full-carlendar .time_reservation{ width:576px;}
+  .full-carlendar .years_month{ width:536px;}
+  .full-carlendar table{ width:618px;}
+  .buy_foote_cont{ width:980px;}
+}
